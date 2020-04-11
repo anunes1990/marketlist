@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "51917463152",
+    "firebase_url": "https://marketlist-6a995.firebaseio.com",
+    "project_id": "marketlist-6a995",
+    "storage_bucket": "marketlist-6a995.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51917463152:android:a18624375cf7b537d61eb5",
+        "android_client_info": {
+          "package_name": "com.allisson.marketlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "51917463152-nhl40iivpr7sep5c4u55kk17abdcl4o5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC87g223Z45GLl6hXwmvdH1byQLcA32CvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "51917463152-nhl40iivpr7sep5c4u55kk17abdcl4o5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
