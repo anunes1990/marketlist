@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MarketList</string>
+    <string name="txtproduto">txtProduto</string>
+    <string name="_0">0</string>
+    <string name="sim">Sim</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="comprado">Comprado</string>
 </resources>
