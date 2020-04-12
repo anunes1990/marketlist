@@ -18,7 +18,7 @@ class ProdutoAdapter(private var listaProdutos: ArrayList<Produto>) :
         var txtComprado: TextView
 
         constructor(view: View) : super(view) {
-            txtProduto = view.findViewById(R.id.txtProduto);
+            txtProduto = view.findViewById(R.id.txtNomeProduto);
             txtQuantidade = view.findViewById(R.id.txtQtd);
             txtComprado = view.findViewById(R.id.txtComprado);
         }
