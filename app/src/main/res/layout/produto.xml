@@ -4,11 +4,10 @@
     android:id="@+id/cardProduto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="8dp"
     android:orientation="vertical"
     app:cardBackgroundColor="#FFFFFF"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="2dp">
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:id="@+id/LinearLayout"
@@ -16,9 +15,7 @@
         android:layout_height="wrap_content"
         android:onClick="editProduto"
         android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/txtProduto"

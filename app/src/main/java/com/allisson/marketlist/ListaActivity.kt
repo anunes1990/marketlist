@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.produto.view.*
 class ListaActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance();
     private var listaProdutos: ArrayList<Produto> = ArrayList();
+    private var totalPagar: Double = 0.00;
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
@@ -32,6 +34,7 @@ class ListaActivity : AppCompatActivity() {
 
     fun getListaDeCompras() {
         db.collection("lista").get().addOnSuccessListener { response ->
+            totalPagar = 0.00;
             for (produto in response) {
                 Log.d("Produto FIREBASE => ", "${produto.id} => ${produto.data}");
                 listaProdutos.add(
@@ -43,8 +46,11 @@ class ListaActivity : AppCompatActivity() {
                         valor = produto.data["valor"].toString().toDouble()
                     )
                 )
+
+                totalPagar += (produto.data["quantidade"].toString().toInt() * produto.data["valor"].toString().toDouble())
             }
 
+            findViewById<TextView>(R.id.txtTotalPagar).text = totalPagar.toString()
             viewManager = LinearLayoutManager(this)
             viewAdapter = ProdutoAdapter(listaProdutos)
             recyclerView = findViewById<RecyclerView>(R.id.recyclerViewProdutos).apply {
