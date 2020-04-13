@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 
 class NovoProdutoActivity : AppCompatActivity() {
@@ -18,11 +19,11 @@ class NovoProdutoActivity : AppCompatActivity() {
     }
 
     fun addProduto(view: View?) {
-        Log.d("AQUI -----> ", "AQUI")
-        val txtNome = findViewById<EditText>(R.id.txtNomeProduto)
+        val txtNome = findViewById<EditText>(R.id.txtProduto)
         val txtQuantidade = findViewById<EditText>(R.id.txtQtd)
         val txtValor = findViewById<EditText>(R.id.txtValor)
 
+        if(txtNome.text.toString() != "" && txtQuantidade.text.toString() != "" && txtValor.text.toString() != ""){
         val produto = hashMapOf(
             "produto" to txtNome.text.toString(),
             "quantidade" to txtQuantidade.text.toString().toInt(),
@@ -45,6 +46,8 @@ class NovoProdutoActivity : AppCompatActivity() {
 
         setResult(Activity.RESULT_OK, it)
         finish()
-
+    } else {
+            Toast.makeText(this, "Todos os campos são obrigatórios.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

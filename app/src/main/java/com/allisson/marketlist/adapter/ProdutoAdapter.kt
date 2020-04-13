@@ -16,11 +16,15 @@ class ProdutoAdapter(private var listaProdutos: ArrayList<Produto>) :
         var txtProduto: TextView
         var txtQuantidade: TextView
         var txtComprado: TextView
+        var txtValor: TextView
+        var txtTotal: TextView
 
         constructor(view: View) : super(view) {
-            txtProduto = view.findViewById(R.id.txtNomeProduto);
-            txtQuantidade = view.findViewById(R.id.txtQtd);
-            txtComprado = view.findViewById(R.id.txtComprado);
+            txtProduto = view.findViewById(R.id.txtProduto)
+            txtQuantidade = view.findViewById(R.id.txtQtd)
+            txtComprado = view.findViewById(R.id.txtComprado)
+            txtValor = view.findViewById(R.id.txtValor)
+            txtTotal = view.findViewById(R.id.txtTotal)
         }
     }
 
@@ -37,9 +41,12 @@ class ProdutoAdapter(private var listaProdutos: ArrayList<Produto>) :
     }
 
     override fun onBindViewHolder(holder: ProdutoHolder, position: Int) {
-        holder.txtProduto.text =listaProdutos.get(position).nome
+        holder.txtProduto.text = listaProdutos.get(position).nome
         holder.txtQuantidade.text = listaProdutos.get(position).quantidade.toString()
         holder.txtComprado.text = listaProdutos.get(position).comprado
+        holder.txtValor.text = listaProdutos.get(position).valor.toString()
+        holder.txtTotal.text =
+            (listaProdutos.get(position).quantidade * listaProdutos.get(position).valor).toString()
     }
 
     override fun getItemCount() = listaProdutos.size

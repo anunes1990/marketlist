@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ import com.allisson.marketlist.adapter.ProdutoAdapter
 import com.allisson.marketlist.models.Produto
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.produto.*
+import kotlinx.android.synthetic.main.produto.view.*
 
 class ListaActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance();
@@ -59,6 +61,19 @@ class ListaActivity : AppCompatActivity() {
         startActivityForResult(it, 1)
     }
 
+    fun editProduto(view: View) {
+        val intent = Intent(this, EditActivity::class.java).apply {
+            val nome = view.findViewById<TextView>(R.id.txtProduto).text.toString()
+            //val nome = cardProduto.findViewById<TextView>(R.id.txtProduto).text.toString()
+            Log.d("Nome >>>", nome)
+            val idProduto = listaProdutos.find { p -> p.nome == nome }?.id
+            Log.d("ID >>>", idProduto.toString())
+
+            putExtra("idProduto", idProduto.toString())
+        }
+        startActivityForResult(intent, 2)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
@@ -67,15 +82,16 @@ class ListaActivity : AppCompatActivity() {
                 getListaDeCompras()
                 Toast.makeText(this, "Produto registrado com sucesso!", Toast.LENGTH_SHORT).show()
             }
-        } /*else if (requestCode == 2) {
+        } else if (requestCode == 2) {
             if (resultCode == Activity.RESULT_OK) {
                 listaProdutos = ArrayList()
-                getProdutos()
+                getListaDeCompras()
                 Toast.makeText(this, "Produto editado com sucesso!", Toast.LENGTH_SHORT).show()
-            }*/ else if (resultCode == 666) {
-            listaProdutos = ArrayList()
-            getListaDeCompras()
-            Toast.makeText(this, "Produto removido com sucesso!", Toast.LENGTH_SHORT).show()
+            } else if (resultCode == 666) {
+                listaProdutos = ArrayList()
+                getListaDeCompras()
+                Toast.makeText(this, "Produto removido com sucesso!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
